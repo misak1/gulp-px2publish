@@ -1,0 +1,17 @@
+<p>
+	このコンテンツは、ステータスコード <code>550 User Error Sample.</code> を送信しています。<br />
+</p>
+
+<?php
+$px->set_status(550, 'User Error Sample.');
+?>
+
+
+<p>
+	エラーメッセージ <code>User Error Message 1</code> と <code>User Error Message 2</code> を送信しています。<br />
+</p>
+<?php
+$px->error( 'User Error Message 1' );
+$px->error( 'User Error Message 2' );
+?>
+

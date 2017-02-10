@@ -1,0 +1,58 @@
+{
+    "name": "pickles2/px-fw-2.x",
+    "description": "Pickles Framework(PxFW) は、静的で大きなウェブサイトを効率よく構築できる オープンソースのHTML生成ツールです。",
+    "keywords": ["pickles"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tomoya Koyanagi",
+            "email": "tomk79@gmail.com"
+        }
+    ],
+    "scripts":{
+        "test": [
+            "php ./vendor/phpunit/phpunit/phpunit"
+        ] ,
+        "documentation": [
+            "php ./vendor/phpdocumentor/phpdocumentor/bin/phpdoc --title \"Pickles Framework 2.0.29 API Document\" -d \"./px-files/_sys/php/\",\"./px-files/themes/\" -f \"./vendor/tomk79/filesystem/php/filesystem.php\",\"./vendor/tomk79/request/php/request.php\" -t \"./sample_pages/phpdoc/\""
+        ]
+    } ,
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "repositories": [
+    ],
+    "require": {
+        "php": ">=5.4.0" ,
+        "ext-mbstring": "*",
+        "ext-pdo": "*",
+        "ext-pdo_sqlite": "*",
+        "tomk79/filesystem": "^1.0.0",
+        "tomk79/request": "^0.1.0",
+        "michelf/php-markdown": "1.6.*",
+        "leafo/scssphp": "0.6.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.1.0" ,
+        "phpdocumentor/phpdocumentor": "^2.9.0"
+    },
+    "autoload": {
+        "files": [
+            "px-files/_sys/php/pickles.php",
+            "px-files/_sys/php/px.php",
+            "px-files/_sys/php/bowl.php",
+            "px-files/_sys/php/pxcmd.php",
+            "px-files/_sys/php/site.php",
+            "px-files/_sys/php/commands/api.php",
+            "px-files/_sys/php/commands/clearcache.php",
+            "px-files/_sys/php/commands/config.php",
+            "px-files/_sys/php/commands/phpinfo.php",
+            "px-files/_sys/php/commands/publish.php",
+            "px-files/_sys/php/processors/md.php",
+            "px-files/_sys/php/processors/scss.php",
+            "px-files/_sys/php/processors/autoindex.php",
+            "px-files/_sys/php/processors/encodingconverter.php",
+            "px-files/_sys/php/processors/ssi.php",
+            "px-files/themes/pickles2/php/theme.php"
+        ]
+    }
+}

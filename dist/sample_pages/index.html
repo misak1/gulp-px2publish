@@ -1,0 +1,56 @@
+
+<p>
+	このディレクトリに配置されているファイルは、コンテンツのサンプルコード集です。<br />
+</p>
+
+<!-- autoindex -->
+
+
+
+
+<h2>サイトマップCSV</h2>
+<p>
+	これらのサンプルコードは、サイトマップCSVに定義されています。サイトマップCSVは次のパスに配置されています。<br />
+</p>
+<ul><li><code>./px-files/sitemaps/sitemap.csv</code></li></ul>
+<p>
+	このファイル3行目以降は、サンプルページについて定義しています。<br />
+</p>
+<p>
+	この定義と見比べながら、サイトマップの設定がページにどのように影響するか、ブラウザで確認しながら見比べてみてください。<br />
+	サイトマップの値を変更してみながら、画面の変化を観察すると、より理解しやすいと思います。<br />
+</p>
+
+
+<h2>HTMLコンテンツの書き方</h2>
+
+<p>
+	コンテンツエリアのみHTMLを書くようにします。<br />
+</p>
+
+<pre><code>&lt;p&gt;
+	コンテンツ本文のHTML部分。&lt;br /&gt;
+&lt;/p&gt;
+</code></pre>
+
+<h3>コンテンツにスタイルシートを追加する</h3>
+<p>
+	コンテンツに特有のCSSを書きたい場合など、headセクション内にコードを出力したい場合があります。<br />
+</p>
+<p>
+	そのような場合は、次の例のように、<code>$px-&gt;bowl()-&gt;send( $html, 'head' )</code> にコードを渡してください。<br />
+</p>
+
+<pre><code>&lt;?php ob_start(); ?&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+.cont_exam{
+	font-size:90%;
+	color:#888888;
+}
+&lt;/style&gt;
+&lt;?php $px-&gt;bowl()-&gt;send( ob_get_clean(), 'head' ); ?&gt;
+
+&lt;p class=&quot;cont_exam&quot;&gt;
+	コンテンツ本文のHTML部分。&lt;br /&gt;
+&lt;/p&gt;
+</code></pre>

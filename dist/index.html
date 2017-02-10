@@ -1,0 +1,78 @@
+<?php if( !$px ){ ?>
+<meta charset="utf-8" />
+<div style="background-color:#fff; color:#f00; border:2px solid #f00; padding:20px;">
+	<p>このメッセージが表示されているということは、インストールが正常に完了していない可能性があります。</p>
+	<p>次の点を確認してください。</p>
+	<ul>
+		<li>index.html ファイルを直接ウェブブラウザで開いているかもしれません。ウェブサーバー Apache を経由して表示してください。</li>
+		<li>.htaccess の設定が反映されていない可能性があります。Apache の設定で <code>AllowOverride All</code> などとして、設定の上書きを許可してください。</li>
+		<li>Apache モジュールの mod_rewrite が利用できない可能性があります。有効になるように設定する、またはモジュールのインストールを行ってください。</li>
+	</ul>
+</div>
+<?php } ?>
+
+
+<!-- autoindex -->
+
+<h2>次のステップ</h2>
+
+<h3>サイトマップを編集します</h3>
+<p>
+	はじめに、サイト全体の構造をサイトマップに登録します。1行が1ページで表現されるCSV形式のファイルです。<br />
+</p>
+<p>
+	サイトマップCSVは次のパスに置かれています。<br />
+</p>
+<pre><code>./px-files/sitemaps/</code></pre>
+
+<h3>テーマを編集します</h3>
+<p>
+	テーマは、コンテンツエリア以外のHTMLソースを生成するPHPテンプレートです。<br />
+	次のパスに置かれています。<br />
+</p>
+<pre><code>./px-files/themes/</code></pre>
+
+<h3>コンテンツを編集します</h3>
+<p>
+	コンテンツは、コンテンツエリアのソースだけが記述されたシンプルなHTMLファイルです。<br />
+	サイトマップの path 欄に登録したパスにHTMLファイルを作成してください。<br />
+</p>
+<p>
+	あなたがいま見ているこのページは、テキストエディタで <code>/index.html</code> を開くとソースを確認できます。<br />
+	このページも、削除や上書きしてあなたのサイトのトップページに置き換えてください。<br />
+</p>
+
+<h3>パブリッシュします</h3>
+<p>
+	サイトができあがったら、そのまま静的なHTMLに書き出すことができます。<br />
+	次のコマンドで、パブリッシュを実行します。<br />
+</p>
+
+<pre><code>$ php ./.px_execute.php /?PX=publish.run
+</code></pre>
+
+<p>
+	しばらくすると、次のパスに、静的なHTMLファイルが生成されます。<br />
+</p>
+<pre><code>./px-files/_sys/ram/publish/
+</code></pre>
+
+
+<h2>PXコマンドに関する注意事項</h2>
+<p>
+	PXコマンドは、Pickles 2 を便利に使うためのさまざまな機能を提供します(例：パブリッシュ機能 <a href="?PX=publish">?PX=publish</a>)。PXコマンドはサーバー内部の情報にアクセスしたり、サーバー上のデータを書き換えるインターフェイスを提供する場合があるため、<strong>第3者にアクセスされると大変キケンです</strong>。<br />
+	Pickles 2 をインターネット上のサーバーで動かす場合には、次のことに注意してください。<br />
+</p>
+<ul>
+	<li>ウェブ制作環境として利用する場合、利用基本認証やIP制限などの処理を施し、一般のユーザーがアクセスできない場所に設置してください。</li>
+	<li>または、Pickles 2 上に構築したウェブアプリケーションをサービスとして公開する場合、設定ファイル (<code>./px-files/config.php</code>) の <code>$conf-&gt;allow_pxcommands</code> の値を <code>0</code> に設定し、PXコマンド機能を無効にしてください。<br />
+		<pre><code>$conf-&gt;allow_pxcommands = 0; // PX Commands の実行を許可
+</code></pre>
+	</li>
+</ul>
+
+
+<h2>APIドキュメント (phpdoc)</h2>
+<p>Pickle2 のPHPコードから生成した <a href="./sample_pages/phpdoc/" target="_blank">APIドキュメント</a> を参照してください。</p>
+
+
