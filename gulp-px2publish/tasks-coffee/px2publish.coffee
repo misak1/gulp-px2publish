@@ -15,13 +15,13 @@ exec = require('child_process').exec;
 global.paths_region = []
 # 設定ファイル読み込み
 px2publish = require(process.cwd() + '/.px2publish.js')
-path = M.require('path')
+path = require('path')
 global.Px2dir = path.dirname(px2publish.config.px_execute_path) + '/'
 global.phpbin = px2publish.config.php_bin
 
-gulp.task "px2publish", ->
+
+fnPx2Publish = () ->
   target = undefined
-  path      = M.require 'path'
   if typeof global.hook_path != "undefined"
     target =  path.normalize(global.hook_path) # // になるのを正規化
 
@@ -43,7 +43,7 @@ gulp.task "px2publish", ->
       aryParam.join ''
 
     # applock.txtの存在チェック
-    path = global.Px2dir + '/px-files/_sys/ram/publish/applock.txt'
+    lockfile = global.Px2dir + '/px-files/_sys/ram/publish/applock.txt'
     fnCheck = (err) ->
       global.paths_region.push(target)
       if !err
@@ -53,6 +53,8 @@ gulp.task "px2publish", ->
         # px2publish
         fnPublish = () ->
           cmd = global.phpbin + ' ' + global.Px2dir + '.px_execute.php "/nothing/to/publish/?PX=publish.run'+fnCreateParam(global.paths_region)+'"'
+          # publish対象をリセット
+          global.paths_region = []
           util.log('px2publish cmd $ ' ,util.colors.green(cmd))
           exec(cmd, (err, stdout, stderr) ->
             if (err) 
@@ -60,7 +62,7 @@ gulp.task "px2publish", ->
             console.log(stdout)
           )
         # applock.txtが確実に作られていているだろうであろう時間を待つ
-        setTimeout(fnPublish, 3000);
-    fs.access path, fnCheck
+        setTimeout(fnPublish, 1000);
+    fs.access lockfile, fnCheck
 
-    
+gulp.task "px2publish", fnPx2Publish
